@@ -17,5 +17,9 @@ while True:
     except Exception as e:
       print e
   else:
-    print "upload complete"
-    break
+   path = "/commit_chunked_upload/%s%s" % ( client.session.root, '/tumblr_ltxqyu54r41qk5i64o1.mp3' )
+   params = dict( overwrite = False, upload_id = upload_id )
+   url, params, headers = client.request( path, params, content_server=True )
+   print client.rest_client.POST( url, params, headers )
+   print "upload complete"
+   break
