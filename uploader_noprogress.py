@@ -5,7 +5,7 @@ import zipfile
 import shutil
 import sys
 #See Dropbox Python SDK to get the access token after the user validates, put the access token in place of "access_token" in the next line
-client = dropbox.client.DropboxClient("qGFBtr0aIjQAAAAAAAAAARB2AN22R-w5h26H_eeLENozaEYmaTEbZRrMbgevFr0o")
+client = dropbox.client.DropboxClient("access_token")
 
 uploadlist=[]
 for i in range (1,len(sys.argv)):
