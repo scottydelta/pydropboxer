@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import dropbox
 import os
 import simplejson
