@@ -29,7 +29,6 @@ for elem in uploadlist:
         print "chunk uploaded: " + uploader.offset
       except Exception as e:
         print e
-        print "prob"
     uploader.finish(elem+".zip")
     if client.metadata(elem+".zip")['bytes'] ==size:
       os.remove(elem+".zip")
@@ -42,8 +41,6 @@ for elem in uploadlist:
       print "Could not read the File"
       continue
     size = os.path.getsize(elem)
-    print size
-    print client.account_info()
     uploader = client.get_chunked_uploader(bigFile, size)
     while uploader.offset < size:
       try:
@@ -51,7 +48,6 @@ for elem in uploadlist:
         print "chunk uploaded: " + uploader.offset
       except Exception as e:
         print e
-        print "prob"
     uploader.finish(elem)
     if client.metadata(elem)['bytes'] ==size:
         os.remove(elem)
