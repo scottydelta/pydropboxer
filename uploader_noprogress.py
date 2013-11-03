@@ -19,7 +19,6 @@ for elem in uploadlist:
       for file in files:
         zip.write(os.path.join(root, file))
     zip.close()
-    shutil.rmtree(elem)
     bigFile = open(elem+".zip", 'rb')
     size = os.path.getsize(elem+".zip")
     uploader = client.get_chunked_uploader(bigFile, size)

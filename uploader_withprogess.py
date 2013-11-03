@@ -20,7 +20,6 @@ for elem in uploadlist:
       for file in files:
         zip.write(os.path.join(root, file))
     zip.close()
-    shutil.rmtree(elem)
     size = os.path.getsize(elem+'.zip')
     file_obj = open(elem+'.zip', 'r+')
     offset = 0
@@ -40,12 +39,12 @@ for elem in uploadlist:
         except Exception as e:
           print e
       else:
-       path = "/commit_chunked_upload/%s%s" % ( client.session.root, '/'+ elem.split('/')[-1]+'.zip' )
-       params = dict( overwrite = False, upload_id = upload_id )
-       url, params, headers = client.request( path, params, content_server=True )
-       print client.rest_client.POST( url, params, headers )
-       print "upload complete"
-       break
+        path = "/commit_chunked_upload/%s%s" % ( client.session.root, '/'+ elem.split('/')[-1]+'.zip' )
+        params = dict( overwrite = False, upload_id = upload_id )
+        url, params, headers = client.request( path, params, content_server=True )
+        shareUrl = client.share("/" + elem + ".zip")
+        print shareUrl
+        break
   else:
     try:
       file_obj = open(elem, 'r+')
@@ -70,10 +69,9 @@ for elem in uploadlist:
         except Exception as e:
           print e
       else:
-       path = "/commit_chunked_upload/%s%s" % ( client.session.root, '/'+ elem.split('/')[-1])
-       params = dict( overwrite = False, upload_id = upload_id )
-       url, params, headers = client.request( path, params, content_server=True )
-       print client.rest_client.POST( url, params, headers )
-       print "upload complete"
-       break
-
+        path = "/commit_chunked_upload/%s%s" % ( client.session.root, '/'+ elem.split('/')[-1])
+        params = dict( overwrite = False, upload_id = upload_id )
+        url, params, headers = client.request( path, params, content_server=True )
+        shareUrl = client.share("/" + elem + ".zip")
+        print shareUrl
+        break
